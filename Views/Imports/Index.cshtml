@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewData["Title"] = "Imports Function";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Users Information
+    </h1>
+</section>
+<!-- Main content -->
+<section class="content container-fluid">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Users Table</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                <h4>Upload User Information from Apple Connect</h4>
+            <hr />
+            @using (Html.BeginForm("Import", "Imports", FormMethod.Post, new { enctype = "multipart/form-data"}))
+            {
+                <div class="form-horizontal">
+                    @*<div class="form-group">
+                        <div class="control-label col-md-2">Download Format:</div>
+                        <div class="col-md-10">
+                            <a href="/User/DownloadExcel/"><img src="~/images/icons/excel.png" width="25" height="25" title="Download Excel format" alt="excel" /></a>
+                        </div>
+                    </div>
+                    *@<div class="form-group">
+                        <div class="control-label col-md-2">Excel:</div>
+                        <div class="col-md-10">
+                            <input type="file" id="FormFile" name="FormFile" class="" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Upload" id="btnSubmit" class="btn btn-primary" />
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="form-group">
+                        <div class="control-label col-md-2"></div>
+                        <div class="col-md-10">
+                        <!--Show Message if file is uploaded or not-->
+                        <font color="red" style="text-align:center">@ViewBag.Message</font>
+                        </div>
+                    </div>
+                </div>
+            }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+$(function () {
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+</script>

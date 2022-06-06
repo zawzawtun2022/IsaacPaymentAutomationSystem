@@ -1,0 +1,226 @@
+﻿@model RoleBasedAuthorization.Models.Dropdownlist
+
+@{
+    ViewData["Title"] = "Imports Function";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<html>
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <title>Loss HR Information</title>
+    <style>
+        input[name=SelectedDate] + img {
+            position: relative;
+            top: 5px;
+            left: 2px;
+        }
+    </style>
+    <script type="text/javascript">
+    function validateNumber(e) {
+            const pattern = /^[0-9]$/;
+
+            return pattern.test(e.key )
+        }    
+    </script>
+</head>
+<body>
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        LossHR Information
+    </h1>
+</section>
+<!-- Main content -->
+<section class="content container-fluid">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">LossHR Table</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                <h4>Loss Idling Hours Information</h4>
+            <hr />
+
+            @using (Html.BeginForm("LossHR", "LossHR", FormMethod.Post))
+            {
+                    @Html.AntiForgeryToken()                 
+
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <div>
+                        <h1>&nbsp;&nbsp;&nbsp;&nbsp;Isaac Japan - Error Task Tracker </h1> <br/>
+                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hi Team, kindly input the Job/Task/Work ID of those work which you encounter errors like SUBMIT TASK ERROR / Video Error / Annotation tool auto refresh etc.
+                        <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Thank you!!
+                        </div>
+                    </div><br/>
+                   
+                    <div class="form-group">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. Job ID/Task ID/Work ID <font style="color:red">*</font><br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <textarea id="txtJobID" name="txtJobID" rows="5" cols="40">
+                        @ViewBag.jobid
+                        </textarea>
+@*                        <input type="text" id="txtJobID" name="txtJobID" value="" style="width:270px;"/>
+*@                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Generate" id="btnGenerate" formaction="Generate" class="btn btn-primary" style="margin-top:-5px;"/>
+                    </div>                
+                    <div class="form-group">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2. Job Name <font style="color:red">*</font><br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="text" id="txtJobName" name="txtJobName" value="@ViewBag.Result" style="width:270px;"/>
+                         
+                    </div>                
+                    <div class="form-group">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3. Locale <font style="color:red">*</font><br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="text" id="txtLocale" name="txtLocale" value="@ViewBag.locale" style="width:270px;"/>
+                        </div>                
+                     @*<div class="form-group">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4. Email ID <font style="color:red">*</font><br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        @Html.DropDownListFor(model => model.lookupList, new SelectList(Model.lookupList, "LookupID", "PacteraEdgeEmail"),"Please Select Email")
+                        <input type="hidden" id="hidden1" name="hidden1" value="" />
+
+                    </div>*@
+                    <div class="form-group">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4. Time Taken to do the task? In Hours <font style="color:red">*</font><br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="text" id="txttimetaken" name="txttimetaken" style="width:270px;" onkeypress="return validateNumber(event)"/>
+                        </div>
+                    <div class="form-group">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5. Starshot Crash/Error? <font style="color:red">*</font><br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <input type="radio" id="yes" name="fav_starshot" value="Yes" checked="checked">
+                          Yes<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <input type="radio" id="no" name="fav_starshot" value="No">
+                          No<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <input type="radio" id="videoannotation" name="fav_starshot" value="Video Annotation">
+                          Done Button Problem (Video Annotation)<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <input type="radio" id="incidentaltext" name="fav_starshot" value="Incidental Text">
+                          Incidental Text<br>
+                     </div>
+                     <div class="form-group">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6. Type Of Task <font style="color:red">*</font><br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        @Html.DropDownListFor(model => model.typeoftaskList, new SelectList(Model.typeoftaskList, "TypeOfTaskID", "TypeOfTask"), "Please Select Type Of Task")
+                        <input type="hidden" id="hidden2" name="hidden2" value="" />
+                    </div>
+                     <div class="form-group">
+                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Submit" id="btnSubmit" class="btn btn-primary" />
+                        
+                    </div>
+                    <br/>
+                    <div class="form-group">
+                        <div class="control-label col-md-2"></div>
+                        <div class="col-md-10">
+                        <!--Show Message if file is uploaded or not-->
+                        <font color="red" style="text-align:center">@ViewBag.Message</font>
+                        </div>
+                    </div>
+                </div>    
+                <br/>
+        <br/>
+           }
+    @section Scripts
+    {
+    <!-- Bootstrap -->
+    <link href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" rel="Stylesheet"
+    type="text/css" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+    <script>
+        function getYesterdayDate() {
+			  return new Date(new Date().getTime() - 24*60*60*1000);
+			}
+	function getTomorrowDate() {
+	var today = new Date();
+	return new Date(new Date().getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate());
+	}
+    $('#txtSelectedDate').datepicker({
+                        minDate: getYesterdayDate(),
+				        maxDate: getTomorrowDate()
+                  });
+
+            $(function () {
+                $('#txtStartDate1').datepicker();
+                $('#txtEndDate1').datepicker();
+                $('#txtStartDate2').datepicker();
+                $('#txtEndDate2').datepicker();
+                $('#txtStartDate3').datepicker();
+                $('#txtEndDate3').datepicker();
+                $('#txtStartDate4').datepicker();
+                $('#txtEndDate4').datepicker();
+            });
+    </script>
+    <script>
+    $(document).ready(function () {
+        $("#lookupList").change(function () {
+            var ddtext = $("#lookupList option:selected").text();
+            $("#hidden1").val(ddtext);
+
+        })
+
+        $("#typeoftaskList").change(function () {
+            var ddtext = $("#typeoftaskList option:selected").text();
+            $("#hidden2").val(ddtext);
+
+        })
+
+    })
+
+
+
+</script>
+}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- get dem fancy typefaces -->
+<script type="text/javascript" src="//use.typekit.net/psm0wvc.js"></script>
+<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+    <!--===============================================================================================-->
+    <script src="~/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/vendor/bootstrap/js/popper.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/js/main.js"></script>
+                      @*
+    <script>
+      function JobGenerate() {
+        $.ajax(
+        {
+          type: "POST",
+          url: '@Url.Action("Generate", "LossHR")',
+          data: {
+            email: $('#txtJobID').val(),
+            password: $('#password').val()
+          },
+          error: function (result) {
+            alert("There is a Problem, Try Again!");
+          },
+          success: function (result) {
+            console.log(result);
+            if (result.status == true) {
+              window.location.href = '@Url.Action("Index", "LossHR")';
+            }
+            else {
+              alert(result.message);
+            }
+          }
+        });
+      }
+    </script>*@
+    </body>
+   </html>

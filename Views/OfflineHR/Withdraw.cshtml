@@ -1,0 +1,68 @@
+﻿@model RoleBasedAuthorization.Models.Offlinehours
+
+@{
+    ViewData["Title"] = "Withdraw Offlinehours";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        @ViewData["Title"]
+    </h1>
+</section>
+<!-- Main content -->
+<section class="content container-fluid">
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-12">
+            <h3>Are you sure you want to withdraw this data?</h3>
+            <div>
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.JobID)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.JobID)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.PacteraEdgeEmail)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.PacteraEdgeEmail)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.WorkedHrs)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.WorkedHrs)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.StarshotCrashIsError)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.StarshotCrashIsError)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.TypeOfTaskID)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.TypeOfTaskID)
+                    </dd>
+                    
+                    <dt>
+                        @Html.DisplayNameFor(model => model.status)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.status)
+                    </dd>
+                </dl>
+
+                <form method="post" action="/OfflineHR/WithdrawConfirmed">
+                    <input type="hidden" name="id" value="@Model.OfflineHrsID" />
+                    <input type="submit" value="Withdraw" class="btn btn-default" />
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,206 @@
+﻿@model RoleBasedAuthorization.PaginatedList<RoleBasedAuthorization.Models.Sglookup>
+
+@{
+    ViewData["Title"] = "Listing Function";
+    
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<html>
+<head>
+<style>
+table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;  
+}
+</style>
+</head>
+<body>
+    <br/><br/><br/>
+    <div class="row" style="margin-left:30px">
+            <div class="panel-primary">
+                @using (Html.BeginForm("ExportToCSV", "Sglookup", FormMethod.Post))
+                {
+                    <button type="submit" class="btn btn-success">
+                        <i class="glyphicon glyphicon glyphicon-download"></i> Download CSV
+                    </button>
+                }
+            </div>
+        </div>
+    <form asp-action="Index" method="get">
+        
+        <br/>
+        
+        <br/>
+    <div class="form-actions no-color">
+        <p>
+            Find by data: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+            <input type="submit" value="Search" class="btn btn-default" /> |
+            <a asp-action="Index">Back to Full List</a>
+        </p>
+    </div>
+    </form>
+    <table id="example" class="table table-striped table-bordered dt-responsive nowrap" width="100%" cellspacing="0">    
+        <br/>
+        <thead>
+        <tr>
+              <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">ID</a>
+            </th>               
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">BillingMonth</a>
+
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Joined Date</a>
+                
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Contract</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Full Name</a>
+            </th>
+              <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">PacteraEdgeEmail</a>
+            </th>      
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">PayRateUS</a>
+            </th>           
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Active Hrs</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">InActive Hrs</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">BillableInActive Hrs</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Total Hrs</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Productivity</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Productivity %</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Quality</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Quality %</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Average Score</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Final Amount Payable</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Additional Project Allowance</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Status</a>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LookupID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BillingMonth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JoinedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contract)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+                &nbsp;&nbsp;&nbsp;
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PacteraEdgeEmail)
+            </td>            
+            <td>
+                @Html.DisplayFor(modelItem => item.PayRateUS)
+            </td> 
+            <td>
+                @Html.DisplayFor(modelItem => item.ActiveHrs)
+            </td> 
+            <td>
+                @Html.DisplayFor(modelItem => item.InactiveHrs)
+            </td> 
+            <td>
+                @Html.DisplayFor(modelItem => item.BillableInactiveHrs)
+            </td> 
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalHrs)
+            </td> 
+            <td>
+                @Html.DisplayFor(modelItem => item.Productivity)
+            </td> 
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductivityPercentage)
+            </td> 
+            <td>
+                @Html.DisplayFor(modelItem => item.quality)
+            </td> 
+            <td>
+                @Html.DisplayFor(modelItem => item.qualitypercentage)
+            </td> 
+            <td>
+                @Html.DisplayFor(modelItem => item.averagescore)
+            </td> 
+            <td>
+                @Html.DisplayFor(modelItem => item.finalamountpayable)
+            </td> 
+            <td>
+                @Html.DisplayFor(modelItem => item.USDTotal)
+            </td> 
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td> 
+                    @if (ViewBag.RoleLevel != null) {
+                    <td>
+                    <a class="btn btn-info" href="/Sglookup/Edit/@item.LookupID">Edit</a> |
+                    <a class="btn btn-info" href="/Sglookup/Delete/@item.LookupID">Delete</a>
+                    </td>
+                    }
+                        else
+                        {
+                            
+                        }  
+        </tr>
+}
+    </tbody>
+</table>    
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>
+</body>
+</html>

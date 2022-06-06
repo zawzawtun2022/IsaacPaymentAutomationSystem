@@ -1,0 +1,77 @@
+﻿@*@model IEnumerable<RoleBasedAuthorization.Models.ViewModel>
+
+@{
+    ViewData["Title"] = "Delete Annotator Weekly";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        @ViewData["Title"]
+    </h1>
+</section>
+<!-- Main content -->
+<section class="content container-fluid">
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-12">
+            <h3>Are you sure you want to delete this?</h3>
+            <div class="box-body">
+                    <table id="example2" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Monthly</th>
+                                <th>NumberOfWeek</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Rating</th>
+                                <th>Status</th>
+                                <th>Annotator</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.monthlyreviews.MonthlyreviewID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.monthlyreviews.Monthly)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.monthlyreviews.Numberofweek)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.monthlyreviews.Startdate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.monthlyreviews.Enddate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.monthlyreviews.Rating)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.monthlyreviews.status)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.admins.FullName)
+                                </td>
+                                <td>
+                                    <form method="post" action="/AnnotatorWeekly/DeleteConfirmed">
+                                        <input type="hidden" name="id" value="@item.monthlyreviews.MonthlyreviewID" />
+                                        <input type="submit" value="Delete" class="btn btn-default" />
+                                    </form>
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>*@

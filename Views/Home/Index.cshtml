@@ -1,0 +1,319 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<html>
+<!-- Morris chart -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css" />
+<head>
+   <script type="text/javascript">
+
+    function yesnoCheck() {
+    
+        no1 = document.getElementById('txtoneformaid')
+    
+        if (document.getElementById('yesCheck').checked) {
+            no1.type = 'hidden';
+        } else {
+            no1.type = 'text';
+        }
+    }
+
+    </script>
+</head>
+<body>
+<!-- Content Header (Page header) 
+<section class="content-header">
+    <h1>
+         Welcome to the IssacPaymentAutomation System !
+    </h1>
+</section>-->
+<!-- Main content -->
+@*<section class="content container-fluid">
+    
+   @* <div class="row text-center" style="margin-top:100px">
+        <img class="" src="~/images/logobackground.png" />
+    </div>*@
+    <section class="content-header">
+    <h1>
+    Dashboard
+    <small>Control panel</small>
+    </h1>
+    <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li class="active">Dashboard</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <!-- Small boxes (Stat box) -->
+    @*<div class="row">
+    <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-aqua">
+        <div class="inner">
+            <h3>@Model.admin_count</h3>
+            <p>Admin</p>
+        </div>
+        <div class="icon">
+            <i class="fa fa-users"></i>
+        </div>
+        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-green">
+        <div class="inner">
+            <h3>@Model.manager_count<sup style="font-size: 20px"></sup></h3>
+            <p>Manager</p>
+        </div>
+        <div class="icon">
+            <i class="fa fa-users"></i>
+        </div>
+        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box"  style="background-color:#819830">
+        <div class="inner">
+            <h3>@Model.projectmanager_count</h3>
+            <p> Project Manager</p>
+        </div>
+        <div class="icon">
+            <i class="ion ion-person"></i>
+        </div>
+        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box" style="background-color:#3C8DBC">
+        <div class="inner">
+            <h3>@Model.projectcoordinator_count</h3>
+            <p> Project Coordinator</p>
+        </div>
+        <div class="icon">
+            <i class="ion ion-person"></i>
+        </div>
+        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-yellow">
+        <div class="inner">
+            <h3>@Model.annotator_count</h3>
+            <p> Annotator</p>
+        </div>
+        <div class="icon">
+            <i class="ion ion-person"></i>
+        </div>
+        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-red">
+        <div class="inner">
+          <h3>@Model.totalusers_count</h3>
+            <p> Total Users</p>
+        </div>
+        <div class="icon">
+            <i class="ion ion-pie-graph"></i>
+        </div>
+        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <!-- ./col -->
+    </div>*@
+    <!-- /.row -->
+    <!-- Main row -->
+    <div class="row">
+    <!-- Left col -->
+    <section class="col-lg-7 connectedSortable">
+        
+        <!-- Custom tabs (Charts with tabs)-->
+        <!-- Users CHART -->
+        <div class="box box-danger" style="width:1100px;">
+            <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-red" style="width:250px;">
+        <div class="inner">
+                <p> Month</p>
+                <h3>@Model.month_count</h3>             
+                <p> Annotator</p>
+                @Model.annotate_count    
+                <p> SumOfTimeActive</p>
+                @Model.sumoftimeactive_count
+                
+        </div>
+        <div class="icon">
+            <i class="ion ion-pie-graph"></i>
+        </div>
+        </div>
+        </div>
+        <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-aqua">
+        <div class="inner">
+                <p> SumOfTimeInActive</p>  
+                <h3>@Model.sumoftimeinactive_count</h3>                
+                <p> Total Time</p>  
+                <h3>@Model.totaltime_count</h3>
+                <p> Active Hrs</p>  
+                <h3>@Model.activehours_count</h3>
+                
+        </div>
+        <div class="icon">
+            <i class="ion ion-pie-graph"></i>
+        </div>
+        </div>
+        </div>
+        <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box" style="background-color:#3C8DBC">
+        <div class="inner">
+                <p> Inactive Hrs</p>  
+                <h3>@Model.inactivehours_count</h3>
+                <p> BillableInActive Hrs</p>  
+                <h3>@Model.billableinactivehours_count</h3>
+                <p> Total Hrs</p>  
+                <h3>@Model.totalhours_count</h3>
+                
+        </div>
+        <div class="icon">
+            <i class="ion ion-pie-graph"></i>
+        </div>
+        </div>
+        </div>
+        <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box" style="background-color:#819830">
+        <div class="inner">
+                <p> Productivity</p>  
+                <h3>@Model.productivity_count</h3>
+                <p> Productivity %</p>  
+                <h3>@Model.productivitypercentage_count</h3>
+                <p> Average Rating</p>  
+                <h3>@Model.averagerating_count</h3>
+                
+        </div>
+         <div class="icon">
+            <i class="ion ion-pie-graph"></i>
+        </div>
+        </div>
+        </div>
+        <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box" style="background-color:#819830">
+        <div class="inner">
+                <p> Quality</p>  
+                <h3>@Model.quality_count</h3>
+                <p> Quality %</p>  
+                <h3>@Model.qualitypercentage_count</h3>
+                <p> Average Score</p>  
+                <h3>@Model.averagescore_count</h3>
+                
+        </div>
+        <div class="icon">
+            <i class="ion ion-pie-graph"></i>
+        </div>
+        </div>
+        </div>
+        <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box" style="background-color:#819830">
+        <div class="inner" style="height:460px;">
+                <p> Additional Project Allowance</p>  
+                <h3>@Model.USDTotal_count</h3>
+                <p> Final Amount Payable</p>  
+                <h3>@Model.finalamountpayable_count</h3>
+                @using (Html.BeginForm("OnApproval", "Home", FormMethod.Post, new { enctype = "multipart/form-data"}))
+                 {
+                            <p> OneFormaID</p>  
+                <h3>@Model.oneformaid_count</h3>
+                <input type="radio" id="yesCheck" name="yesno" value="Yes" checked="checked" onclick="yesnoCheck();">
+                <label for="html">Yes</label><input type="radio" id="noCheck" name="yesno" value="No" onclick="yesnoCheck();">
+                <label for="html">No</label><br>
+                <input type="hidden" id="txtoneformaid" name="txtoneformaid" style="background-color:gray;"><br/>
+                
+                <p> Status</p>  
+                <h3>@Model.dashboardstatus_count</h3>
+                var total = Model.finalamountpayable_count;
+                var isUserConnected = Model.dashboardstatus_count;
+                    @if( isUserConnected == "Processing" && total > 0) 
+                    {
+                        
+                            
+                            <div class="modal-footer">
+                                <input type="submit" value="Confirmed" id="btnSubmit" class="btn btn-primary" />
+                            </div>
+                        
+                    }
+                    else
+                    {
+                            
+                    }
+                   }
+                 </div>    
+                  
+        <div class="icon">
+            <i class="ion ion-pie-graph"></i>
+        </div>
+        </div>
+        </div>
+           @* <div class="box-header with-border">
+            <h3 class="box-title">Users Chart</h3>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+            </div>
+            </div>
+            <div class="box-body chart-responsive">
+            <div class="chart" id="sales-chart" style="height: 300px; position: relative;"></div>
+            
+            </div>*@
+            <!-- /.box-body -->
+        </div>
+        <!-- /.nav-tabs-custom -->
+    </section>
+        </div>
+        <!-- /.box -->
+    </section>
+    <!-- right col -->
+    </div>
+    <!-- /.row (main row) -->
+</section>
+  
+<!-- Morris.js charts -->
+<script src="bower_components/raphael/raphael.min.js"></script>
+<script src="bower_components/morris.js/morris.min.js"></script>
+<script>
+  $(function () {
+    "use strict";
+    //DONUT CHART
+    var donut = new Morris.Donut({
+      element: 'sales-chart',
+      resize: true,
+      colors: ["#3c8dbc", "#00A65A", "#F39C12"],
+      data: [
+        {label: "Registered Admin", value: @Model.admin_count},
+        {label: "Registered Manager", value: @Model.manager_count},
+        {label: "Registered Annotator", value: @Model.annotator_count}
+      ],
+      hideHover: 'auto'
+    });
+  });
+</script>
+</body>
+</html>
+    
+<!-- /.content -->

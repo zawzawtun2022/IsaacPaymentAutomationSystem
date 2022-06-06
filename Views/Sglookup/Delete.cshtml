@@ -1,0 +1,67 @@
+﻿@model RoleBasedAuthorization.Models.Sglookup
+
+@{
+    ViewData["Title"] = "Delete Summary Final Amount ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        @ViewData["Title"]
+    </h1>
+</section>
+<!-- Main content -->
+<section class="content container-fluid">
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-12">
+            <h3>Are you sure you want to delete this?</h3>
+            <div>
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.LookupID)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.LookupID)
+                    </dd>                   
+                    <dt>
+                        @Html.DisplayNameFor(model => model.FirstName)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.FirstName)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.LastName)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.LastName)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Contract)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Contract)
+                    </dd>
+                     <dt>
+                        @Html.DisplayNameFor(model => model.PacteraEdgeEmail)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.PacteraEdgeEmail)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.TotalHrs)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.TotalHrs)
+                    </dd>
+                </dl>
+
+                <form method="post" action="/Sglookup/DeleteConfirmed">
+                    <input type="hidden" name="id" value="@Model.LookupID" />
+                    <input type="submit" value="Delete" class="btn btn-default" />
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

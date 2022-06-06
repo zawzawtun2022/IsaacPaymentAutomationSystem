@@ -1,0 +1,73 @@
+-----------Exception Details on  27/04/2022 14:16:00-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 27/04/2022 14:15:59
+
+Error Line No : line 199
+
+Error Message: DivideByZeroException
+
+Exception Type: System.DivideByZeroException
+
+Error Location : Attempted to divide by zero.
+
+ Error Page Url: http://localhost:27979/Calculation/Calculation
+
+User Host IP: 
+
+
+--------------------------------*End*------------------------------------------
+
+
+
+-----------Exception Details on  27/04/2022 14:16:31-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 27/04/2022 14:16:30
+
+Error Line No : line 199
+
+Error Message: DivideByZeroException
+
+Exception Type: System.DivideByZeroException
+
+Error Location : Attempted to divide by zero.
+
+ Error Page Url: http://localhost:27979/Calculation/Calculation
+
+User Host IP: 
+
+
+--------------------------------*End*------------------------------------------
+
+
+
+-----------Exception Details on  27/04/2022 14:19:38-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 27/04/2022 14:19:37
+
+Error Line No : line 199
+
+Error Message: DivideByZeroException
+
+Exception Type: System.DivideByZeroException
+
+Error Location : Attempted to divide by zero.
+
+ Error Page Url: http://localhost:27979/Calculation/Calculation
+
+User Host IP: 10.19.173.71
+
+
+10.19.173.71
+--------------------------------*End*------------------------------------------
+
+
+

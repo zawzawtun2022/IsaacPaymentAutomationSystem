@@ -1,0 +1,268 @@
+﻿@model IEnumerable<RoleBasedAuthorization.Models.MonthlyReviews>
+
+@{
+    ViewData["Title"] = "Imports Function";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+
+}
+<html>
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <title>Annotator Checker Calculation</title>
+    <style>
+        input[name=SelectedDate] + img {
+            position: relative;
+            top: 5px;
+            left: 2px;
+        }
+    </style>
+
+</head>
+<body>
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Annotator Checker Calculation
+    </h1>
+</section>
+<!-- Main content -->
+<section class="content container-fluid">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Annotator Checker Table</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                <h4>Annotator Checker Information</h4>
+            <hr />
+
+            @using (Html.BeginForm("AnnotatorChecker", "AnnotatorChecker", FormMethod.Post))
+            {
+                    @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <br/>
+                   
+                    <div class="form-group">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. Choose Month : <font style="color:red">*</font><br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     </div>
+                     <div class="form-group" style="margin-left:30px;width:260px">
+                                
+                     @Html.DropDownList("ddlMonthly", (IEnumerable<SelectListItem>)ViewBag.MONTHLY, null, new { @class ="form-control" })
+
+  @*                      @Html.DropDownListFor(model => model.month, new SelectList(Model.month, "Monthly", "Monthly"), "Select Month")
+  *@                      <input type="hidden" id="hidden2" name="hidden2" value="" />
+                                             
+                @*                        <input type="text" id="txtJobID" name="txtJobID" value="" style="width:270px;"/>
+*@                  </div>                
+                    <div class="form-group">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2. Choose the Annotator : <font style="color:red">*</font><br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </div>
+                     <div class="form-group" style="margin-left:30px;width:260px">
+                                
+                     @Html.DropDownList("ddlchildusertype", (IEnumerable<SelectListItem>)ViewBag.ITEM,null, new { @class = "form-control" })
+
+@*                        @Html.DropDownListFor(model => model.childusertype, new SelectList(Model.childusertype, "Id", "Email"), "Select UserType")
+*@                        <input type="hidden" id="hidden3" name="hidden3" value="" />
+                                              
+                
+                        </div>                
+                     <div class="row">
+            </div>
+            <!-- /.box -->
+        </div>
+    
+                        <div class="form-group">
+                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Generate" id="btnSubmit" class="btn btn-primary" />
+                        
+                    </div>
+                    <br/>
+       <!-- left column -->
+       <div class="box-body">
+                 <table id="example2" class="table table-bordered table-hover">
+                    @*<input type="hidden" class="form-control" id="monthlyreviewID" name="monthlyreviewID" value="@Model.monthlyreviewID" >
+*@
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Monthly</th>
+                                <th>Number Of Week</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Rating</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.MonthlyreviewID)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Monthly)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Numberofweek)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Startdate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Enddate)
+                                    </td>
+                                    
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.AssignMonthlyReviews.Rating)
+                                    </td>
+                                    <td>
+                                        <a href="/AnnotatorChecker/Edit/@item.MonthlyreviewID">Update</a> 
+                                    </td>
+                                </tr>
+                                <br/>
+                                
+                            }
+                        </tbody>
+                    </table>
+                    <br/>
+                    
+
+                    </div>
+                <br/>
+        <br/>
+           }
+           @using (Html.BeginForm("RetrieveResult", "AnnotatorChecker", FormMethod.Post))
+            {
+                    @Html.AntiForgeryToken()
+                @*<div class="form-group">
+                  <select  id="ddlnumberofquality" name="ddlnumberofquality">
+                                  <option value="1">1</option>
+                                  <option value="2">2</option>
+                                  <option value="3">3</option>
+                                  <option value="4">4</option>
+                                  <option value="5">5</option>
+                                </select>
+                    </div>*@
+                        <br/>
+                    <br/>
+                    <div class="form-group">
+                        <a href="~/AnnotatorChecker/OnGetDelete" asp-page-handler="Delete" id="deleteBtn" class="btn bg-danger mr-1">Refresh</a>
+                    @*<a class="btn btn-info" >Calculate</a> *@
+                    
+                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Calculate" id="btnSubmit" class="btn btn-primary" />
+                        
+                    </div>
+                    <br/>
+                    <div class="form-group">
+                        <div class="control-label col-md-2"></div>
+                        <div class="col-md-10">
+                        <!--Show Message if file is uploaded or not-->
+                        <font color="red" style="text-align:center">@ViewBag.Message</font>
+                        </div>
+                    </div>
+                    }
+    @section Scripts
+    {
+    <!-- Bootstrap -->
+    <link href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" rel="Stylesheet"
+    type="text/css" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+    <script>
+        function getYesterdayDate() {
+			  return new Date(new Date().getTime() - 24*60*60*1000);
+			}
+	function getTomorrowDate() {
+	var today = new Date();
+	return new Date(new Date().getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate());
+	}
+    $('#txtSelectedDate').datepicker({
+                        minDate: getYesterdayDate(),
+				        maxDate: getTomorrowDate()
+                  });
+
+            $(function () {
+                $('#txtStartDate1').datepicker();
+                $('#txtEndDate1').datepicker();
+                $('#txtStartDate2').datepicker();
+                $('#txtEndDate2').datepicker();
+                $('#txtStartDate3').datepicker();
+                $('#txtEndDate3').datepicker();
+                $('#txtStartDate4').datepicker();
+                $('#txtEndDate4').datepicker();
+            });
+    </script>
+    <script>
+    $(document).ready(function () {
+        $("#lookupList").change(function () {
+            var ddtext = $("#lookupList option:selected").text();
+            $("#hidden1").val(ddtext);
+
+        })
+
+        $("#typeoftaskList").change(function () {
+            var ddtext = $("#typeoftaskList option:selected").text();
+            $("#hidden2").val(ddtext);
+
+        })
+
+    })
+
+
+
+</script>
+}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- get dem fancy typefaces -->
+<script type="text/javascript" src="//use.typekit.net/psm0wvc.js"></script>
+<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+    <!--===============================================================================================-->
+    <script src="~/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/vendor/bootstrap/js/popper.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/js/main.js"></script>
+                      @*
+    <script>
+      function JobGenerate() {
+        $.ajax(
+        {
+          type: "POST",
+          url: '@Url.Action("Generate", "LossHR")',
+          data: {
+            email: $('#txtJobID').val(),
+            password: $('#password').val()
+          },
+          error: function (result) {
+            alert("There is a Problem, Try Again!");
+          },
+          success: function (result) {
+            console.log(result);
+            if (result.status == true) {
+              window.location.href = '@Url.Action("Index", "LossHR")';
+            }
+            else {
+              alert(result.message);
+            }
+          }
+        });
+      }
+    </script>*@
+    </body>
+   </html>

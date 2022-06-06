@@ -1,0 +1,110 @@
+﻿@*@model RoleBasedAuthorization.Models.MonthlyReviews
+
+@{
+    ViewData["Title"] = "Edit AnnotatorWeekly";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<html>
+<body>
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        @ViewData["Title"]
+    </h1>
+</section>
+<!-- Main content -->
+<section class="content container-fluid">
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Edit AnnotatorWeekly Info</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <form method="post" asp-action="/AnnotatorWeekly/Edit">
+                    <input type="hidden" class="form-control" id="monthID" name="monthID" value="@Model.MonthlyreviewID" >
+
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="Monthly">Monthly</label>
+                            <input type="text" class="form-control" id="Monthly" name="Monthly" value="@Model.Monthly" placeholder="Enter Monthly">
+                        </div>
+                        <div class="form-group">
+                            <label for="NumberOfWeek">NumberOfWeek</label>
+                            <input type="text" class="form-control" id="NumberOfWeek" name="NumberOfWeek" value="@Model.Numberofweek" placeholder="Enter Numberofweek">
+                        </div>
+                        <div class="form-group">
+                            <label for="StartDate">StartDate</label>
+                            <input type="text" class="form-control" id="StartDate" name="StartDate" value="@Model.Startdate" placeholder="Enter Startdate">
+                        </div>
+                        <div class="form-group">
+                            <label for="EndDate">EndDate</label>
+                            <input type="text" class="form-control" id="EndDate" name="EndDate" value="@Model.Enddate" placeholder="Enter Enddate">
+                        </div>
+                        <div class="form-group">
+                            <label for="Rating">Rating</label>
+                            <input type="text" class="form-control" id="Rating" name="Rating" value="@Model.AssignMonthlyReviews.Rating" placeholder="Enter Rating">
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="AnnotatorId" class="control-label">Annotator</label>
+                             @Html.DropDownList("AnnotatorId", (IEnumerable<SelectListItem>)ViewBag.userroles, null, new { @class ="form-control" })
+                           
+                         </div>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            
+@section Scripts
+    {
+    <!-- Bootstrap -->
+    <link href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" rel="Stylesheet"
+    type="text/css" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+    <script>
+        function getYesterdayDate() {
+			  return new Date(new Date().getTime() - 24*60*60*1000);
+			}
+	function getTomorrowDate() {
+	var today = new Date();
+	return new Date(new Date().getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate());
+	}
+    $('#txtSelectedDate').datepicker({
+                        minDate: getYesterdayDate(),
+				        maxDate: getTomorrowDate()
+                  });
+
+            $(function () {
+                $('#Startdate').datepicker();
+                $('#Enddate').datepicker();
+                
+            });
+    </script>
+ }
+            </div>
+        </div>
+    </div>
+</section>
+<!-- get dem fancy typefaces -->
+<script type="text/javascript" src="//use.typekit.net/psm0wvc.js"></script>
+<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+    <!--===============================================================================================-->
+    <script src="~/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/vendor/bootstrap/js/popper.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/js/main.js"></script>
+               
+    </body>
+   </html>*@

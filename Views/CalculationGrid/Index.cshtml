@@ -1,0 +1,117 @@
+﻿@model RoleBasedAuthorization.PaginatedList<RoleBasedAuthorization.Models.Sglookup>
+
+@{
+    ViewData["Title"] = "Listing Function";
+    
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <form asp-action="Index" method="get">
+        
+        <br/>
+        
+        <br/>
+    <div class="form-actions no-color">
+        <p>
+            Find by data: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+            <input type="submit" value="Search" class="btn btn-default" /> |
+            <a asp-action="Index">Back to Full List</a>
+        </p>
+    </div>
+    </form>
+    <table id="example" class="table table-striped table-bordered dt-responsive nowrap" width="100%" cellspacing="0">    
+        <br/>
+        <thead>
+        <tr>
+              <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Lookup ID</a>
+            </th>
+               <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">First Name</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">LastName</a>
+
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Contract</a>
+                
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">PacteraEdgeEmail</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">oneforma</a>
+            </th>
+@*            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">UHRS</a>
+            </th>*@
+              <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">PayRateUS</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">JoinedDate</a>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LookupID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contract)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PacteraEdgeEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.oneforma)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.UHRS)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.PayRateUS)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JoinedDate)
+            </td>
+            <td>
+                <a class="btn btn-info" href="/CalculationGrid/Edit/@item.LookupID">Edit</a> |
+                <a class="btn btn-info" href="/CalculationGrid/Delete/@item.LookupID">Delete</a>
+                @*<a class="btn btn-info" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a class="btn btn-info" asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
+            </td>
+        </tr>
+}
+    </tbody>
+</table>    
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>
